@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:c="http://www.springframework.org/schema/c"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+https://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean class="com.springcore.springcore.Student" name="student1"
+		p:studentId="12345" p:studentName="Mrunali" p:studentAddress="Latur">
+		<!-- <property name="studentId"> <value>1234</value> </property> <property 
+			name="studentName" value="Mrunali" /> <property name="studentAddress"> <value>Latur</value> 
+			</property> -->
+	</bean>
+
+	<bean class="com.springcore.springcore.Employee" name="employee1">
+		<property name="eName" value="Ravi" />
+		<property name="ePhones">
+			<list>
+				<value>1234567890</value>
+				<value>56764532</value>
+				<value>34346</value>
+			</list>
+		</property>
+		<property name="eAddress">
+			<set>
+				<value>Latur</value>
+				<value>Pune</value>
+				<value>Dharashiv</value>
+			</set>
+		</property>
+		<property name="courses">
+			<map>
+				<entry key="java" value="2month" />
+				<entry key="html" value="1month" />
+
+			</map>
+		</property>
+		<property name="props">
+			<props>
+				<prop key="username">Root</prop>
+				<prop key="password">Root</prop>
+			</props>
+		</property>
+	</bean>
+
+	<bean class="com.springcore.springcore.ReferenceInjection"
+		name="aref">
+		<property name="x" value="2" />
+		<property name="obj">
+			<ref bean="bref"></ref>
+		</property>
+	</bean>
+
+	<bean class="com.springcore.springcore.BRef"
+		name="bref">
+		<property name="y" value="20" />
+	</bean>
+	
+	<bean class="com.springcore.springcore.ConstructorInjection" name="ci"  c:certi-ref="ciRef">
+		<constructor-arg value="12"/>
+		<constructor-arg><value>"Visal"</value></constructor-arg>
+		<constructor-arg>
+			<list>
+				<value>Abc</value>
+				<value>Xyz</value>
+			</list>
+		</constructor-arg>
+	
+	</bean>
+	
+	<bean class="com.springcore.springcore.CIRef" name="ciRef"  >
+		<constructor-arg><value>"JAva"</value></constructor-arg>
+	</bean>
+	
+	<bean class="com.springcore.springcore.BeanLifeCycle" name="lifecycle" init-method="init" destroy-method="destroy" c:name="MNP">
+	</bean>
+	
+	<bean class="com.springcore.springcore.BeanCycleUsingInterface" name="lifecycleinterfcae" c:name="MNP">
+	</bean>
+	
+</beans>
